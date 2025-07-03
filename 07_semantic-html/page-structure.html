@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Page Structure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "nav nav nav"
+                "main main sidebar"
+                "footer footer footer";
+            grid-template-columns: 1fr 1fr 300px;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 100vh;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        body>header {
+            grid-area: header;
+        }
+
+        body>nav {
+            grid-area: nav;
+        }
+
+        body>main {
+            grid-area: main;
+        }
+
+        body>aside {
+            grid-area: sidebar;
+        }
+
+        body>footer {
+            grid-area: footer;
+        }
+
+        header,
+        nav,
+        main,
+        aside,
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation styling */
+        nav {
+            background: #2c3e50;
+            padding: 15px 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #34495e;
+        }
+
+        main {
+            background: white;
+        }
+
+        main h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        section h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        article {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        article header {
+            background: none;
+            padding: 0;
+            margin-bottom: 15px;
+            box-shadow: none;
+        }
+
+        article h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        article time {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        article footer {
+            background: #ecf0f1;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        aside {
+            background: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+        }
+
+        aside h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        aside ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        aside li {
+            margin: 10px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        aside a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        aside a:hover {
+            color: #e74c3c;
+        }
+
+        footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "main"
+                    "sidebar"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>TechBlog Pro</h1>
+        <p>Your Source for Web Development Insights</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#articles">Articles</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Latest Web Development Articles</h2>
+
+        <section>
+            <h3>Frontend Development</h3>
+
+            <article>
+                <header>
+                    <h4>Modern CSS Grid Layout Techniques</h4>
+                    <p>Published on <time datetime="2024-01-15">January 15, 2024</time> by Sarah Johnson</p>
+                </header>
+
+                <p>CSS Grid has revolutionized web layout design. In this comprehensive guide, we'll explore advanced
+                    grid techniques that will transform how you approach responsive design.</p>
+
+                <p>We'll cover grid areas, implicit vs explicit grids, and how to create complex layouts with minimal
+                    code.</p>
+
+                <footer>
+                    <p>Tags: CSS, Grid, Layout, Responsive Design | <a href="#comments">Comments (23)</a></p>
+                </footer>
+            </article>
+
+            <article>
+                <header>
+                    <h4>JavaScript ES2024 Features You Should Know</h4>
+                    <p>Published on <time datetime="2024-01-20">January 20, 2024</time> by Mike Chen</p>
+                </header>
+
+                <p>JavaScript continues to evolve with exciting new features. Let's explore the latest ES2024 additions
+                    that will make your code more efficient and elegant.</p>
+
+                <p>From array grouping to improved error handling, these features will enhance your development
+                    workflow.</p>
+
+                <footer>
+                    <p>Tags: JavaScript, ES2024, Features | <a href="#comments">Comments (18)</a></p>
+                </footer>
+            </article>
+        </section>
+
+        <section>
+            <h3>Backend Development</h3>
+
+            <article>
+                <header>
+                    <h4>Node.js Performance Optimization</h4>
+                    <p>Published on <time datetime="2024-01-25">January 25, 2024</time> by David Rodriguez</p>
+                </header>
+
+                <p>Learn how to optimize your Node.js applications for better performance and scalability. We'll cover
+                    profiling, caching strategies, and database optimization.</p>
+
+                <p>These techniques will help you build faster, more efficient server-side applications.</p>
+
+                <footer>
+                    <p>Tags: Node.js, Performance, Optimization | <a href="#comments">Comments (31)</a></p>
+                </footer>
+            </article>
+        </section>
+
+        <section>
+            <h3>Quick Tips</h3>
+            <ul>
+                <li>Use semantic HTML elements for better accessibility</li>
+                <li>Optimize images for web performance</li>
+                <li>Implement proper error handling in JavaScript</li>
+                <li>Use CSS custom properties for maintainable stylesheets</li>
+            </ul>
+        </section>
+    </main>
+
+    <aside>
+        <h3>Popular Posts</h3>
+        <ul>
+            <li><a href="#post1">Getting Started with React Hooks</a></li>
+            <li><a href="#post2">CSS Flexbox Complete Guide</a></li>
+            <li><a href="#post3">JavaScript Async/Await Explained</a></li>
+            <li><a href="#post4">Web Accessibility Best Practices</a></li>
+        </ul>
+
+        <h3>Newsletter</h3>
+        <p>Subscribe to our weekly newsletter for the latest web development tips and tutorials.</p>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+
+        <h3>Categories</h3>
+        <ul>
+            <li><a href="#html">HTML (45)</a></li>
+            <li><a href="#css">CSS (38)</a></li>
+            <li><a href="#javascript">JavaScript (62)</a></li>
+            <li><a href="#react">React (29)</a></li>
+            <li><a href="#nodejs">Node.js (22)</a></li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>&copy; 2024 TechBlog Pro. All rights reserved.</p>
+        <p>
+            <a href="#privacy">Privacy Policy</a> |
+            <a href="#terms">Terms of Service</a> |
+            <a href="#contact">Contact Us</a>
+        </p>
+        <p>Follow us:
+            <a href="#twitter">Twitter</a> |
+            <a href="#github">GitHub</a> |
+            <a href="#linkedin">LinkedIn</a>
+        </p>
+    </footer>
+</body>
+
+</html>
