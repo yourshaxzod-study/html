@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Labels and Attributes</title>
+</head>
+
+<body>
+    <h1>ARIA Labels and Attributes</h1>
+
+    <h2>ARIA Labels</h2>
+    <button aria-label="Close dialog">×</button>
+    <button aria-label="Add item to shopping cart">
+        <img src="cart-icon.png" alt="">
+    </button>
+
+    <h2>ARIA Labelledby</h2>
+    <h3 id="billing-title">Billing Address</h3>
+    <fieldset aria-labelledby="billing-title">
+        <input type="text" placeholder="Street Address">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="ZIP Code">
+    </fieldset>
+
+    <h2>ARIA Describedby</h2>
+    <label for="password">Password:</label>
+    <input type="password" id="password" aria-describedby="pwd-help">
+    <div id="pwd-help">Password must be at least 8 characters long</div>
+
+    <h2>ARIA Live Regions</h2>
+    <div aria-live="polite" id="status"></div>
+    <div aria-live="assertive" id="errors"></div>
+    <button onclick="document.getElementById('status').textContent = 'Form saved successfully'">
+        Save Form
+    </button>
+
+    <h2>ARIA Expanded</h2>
+    <button aria-expanded="false" aria-controls="menu" onclick="toggleMenu()">
+        Menu
+    </button>
+    <ul id="menu" hidden>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <h2>ARIA Hidden</h2>
+    <span aria-hidden="true">👍</span> Good job!
+    <span class="sr-only">Thumbs up emoji</span>
+
+    <h2>ARIA Roles</h2>
+    <div role="alert">Error: Please fill in all required fields</div>
+    <div role="status">Loading content...</div>
+    <nav role="navigation">
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const button = document.querySelector('[aria-controls="menu"]');
+            const menu = document.getElementById('menu');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            button.setAttribute('aria-expanded', !isExpanded);
+            menu.hidden = isExpanded;
+        }
+    </script>
+
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</body>
+
+</html>
