@@ -131,7 +131,6 @@
     </header>
 
     <main>
-        <!-- Basic Audio Example -->
         <section class="audio-container">
             <h2>Basic Audio Implementation</h2>
             <audio controls>
@@ -149,7 +148,6 @@
                 &lt;/audio&gt;</div>
         </section>
 
-        <!-- Audio Attributes -->
         <section class="audio-container">
             <h2>Audio Attributes</h2>
 
@@ -184,7 +182,6 @@
             </div>
         </section>
 
-        <!-- Music Player Example -->
         <section class="music-player">
             <h2>🎵 Music Player</h2>
             <h3 id="current-song">Now Playing: Ambient Music</h3>
@@ -208,7 +205,6 @@
             </div>
         </section>
 
-        <!-- Podcast Player Example -->
         <section class="podcast-player">
             <h2>🎙️ Podcast Player</h2>
             <h3>Web Development Podcast - Episode 42</h3>
@@ -234,7 +230,6 @@
             </div>
         </section>
 
-        <!-- Audio Formats -->
         <section class="audio-container">
             <h2>Audio Formats Support</h2>
 
@@ -267,7 +262,6 @@
             </div>
         </section>
 
-        <!-- Playlist Example -->
         <section class="playlist">
             <h2>🎵 Audio Playlist</h2>
 
@@ -294,7 +288,6 @@
             </div>
         </section>
 
-        <!-- Audio with JavaScript Control -->
         <section class="audio-container">
             <h2>JavaScript Audio Control</h2>
 
@@ -319,7 +312,6 @@
             </div>
         </section>
 
-        <!-- Accessibility Example -->
         <section class="audio-container">
             <h2>Accessible Audio Player</h2>
 
@@ -344,7 +336,6 @@
             </figure>
         </section>
 
-        <!-- Best Practices -->
         <section class="audio-container">
             <h2>Best Practices</h2>
 
@@ -374,106 +365,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 HTML Learning Tutorial. Audio implementation examples and best practices.</p>
+        <p>&copy; Audio implementation examples and best practices.</p>
     </footer>
-
-    <script>
-        // Music Player Functions
-        function playPause() {
-            const player = document.getElementById('music-player');
-            if (player.paused) {
-                player.play();
-            } else {
-                player.pause();
-            }
-        }
-
-        function changeVolume(level) {
-            const player = document.getElementById('music-player');
-            player.volume = level;
-        }
-
-        function skipTime(seconds) {
-            const player = document.getElementById('music-player');
-            player.currentTime += seconds;
-        }
-
-        // Podcast Player Functions
-        function setPlaybackRate(rate) {
-            const player = document.getElementById('podcast-player');
-            player.playbackRate = rate;
-        }
-
-        // JavaScript Audio Control
-        function playAudio() {
-            document.getElementById('js-audio').play();
-        }
-
-        function pauseAudio() {
-            document.getElementById('js-audio').pause();
-        }
-
-        function stopAudio() {
-            const audio = document.getElementById('js-audio');
-            audio.pause();
-            audio.currentTime = 0;
-        }
-
-        function muteAudio() {
-            document.getElementById('js-audio').muted = true;
-        }
-
-        function unmuteAudio() {
-            document.getElementById('js-audio').muted = false;
-        }
-
-        function setVolume(value) {
-            document.getElementById('js-audio').volume = value;
-        }
-
-        // Playlist Functions
-        const tracks = [
-            { src: 'audio/track1.mp3', title: 'Track 1: Intro Music' },
-            { src: 'audio/track2.mp3', title: 'Track 2: Main Theme' },
-            { src: 'audio/track3.mp3', title: 'Track 3: Outro' }
-        ];
-
-        function loadTrack(index) {
-            const player = document.getElementById('playlist-player');
-            const trackElements = document.querySelectorAll('.track');
-
-            // Remove active class from all tracks
-            trackElements.forEach(track => track.classList.remove('active'));
-
-            // Add active class to selected track
-            trackElements[index].classList.add('active');
-
-            // Load new track
-            player.src = tracks[index].src;
-            player.load();
-        }
-
-        // Update time display
-        document.getElementById('music-player').addEventListener('timeupdate', function () {
-            const currentTime = this.currentTime;
-            const duration = this.duration;
-
-            document.getElementById('current-time').textContent = formatTime(currentTime);
-            document.getElementById('duration').textContent = formatTime(duration);
-        });
-
-        // Update progress
-        document.getElementById('js-audio').addEventListener('timeupdate', function () {
-            const progress = (this.currentTime / this.duration) * 100;
-            document.getElementById('progress').textContent = Math.round(progress) + '%';
-        });
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-    </script>
 </body>
 
 </html>
