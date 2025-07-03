@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microdata</title>
+    <style>
+        .person,
+        .product,
+        .event,
+        .organization {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+
+        .rating {
+            color: #ff6b35;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007cba;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Microdata Examples</h1>
+
+    <h2>Person</h2>
+    <div class="person" itemscope itemtype="http://schema.org/Person">
+        <img src="profile.jpg" alt="Profile picture" itemprop="image">
+        <h3 itemprop="name">John Smith</h3>
+        <p>Job Title: <span itemprop="jobTitle">Software Engineer</span></p>
+        <p>Email: <a href="mailto:john@example.com" itemprop="email">john@example.com</a></p>
+        <p>Phone: <span itemprop="telephone">+1-555-123-4567</span></p>
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <p>Address:
+                <span itemprop="streetAddress">123 Main Street</span>,
+                <span itemprop="addressLocality">New York</span>,
+                <span itemprop="addressRegion">NY</span>
+                <span itemprop="postalCode">10001</span>
+            </p>
+        </div>
+        <p>Website: <a href="https://johnsmith.com" itemprop="url">johnsmith.com</a></p>
+    </div>
+
+    <h2>Product</h2>
+    <div class="product" itemscope itemtype="http://schema.org/Product">
+        <img src="laptop.jpg" alt="Laptop" itemprop="image">
+        <h3 itemprop="name">Gaming Laptop Pro</h3>
+        <p itemprop="description">High-performance gaming laptop with advanced graphics and fast processor</p>
+
+        <div itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+            <span itemprop="name">TechBrand</span>
+        </div>
+
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span class="price">$<span itemprop="price">1299.99</span></span>
+            <meta itemprop="priceCurrency" content="USD">
+            <p>Availability: <span itemprop="availability" content="http://schema.org/InStock">In Stock</span></p>
+            <p>Condition: <span itemprop="itemCondition" content="http://schema.org/NewCondition">New</span></p>
+        </div>
+
+        <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <span class="rating">Rating: <span itemprop="ratingValue">4.5</span>/5</span>
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="worstRating" content="1">
+            <span>(<span itemprop="ratingCount">127</span> reviews)</span>
+        </div>
+    </div>
+
+    <h2>Event</h2>
+    <div class="event" itemscope itemtype="http://schema.org/Event">
+        <h3 itemprop="name">Web Development Conference 2024</h3>
+        <p itemprop="description">Annual conference for web developers featuring the latest technologies and trends</p>
+
+        <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+            <span itemprop="name">Convention Center</span>
+            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span itemprop="streetAddress">456 Conference Ave</span>,
+                <span itemprop="addressLocality">San Francisco</span>,
+                <span itemprop="addressRegion">CA</span>
+                <span itemprop="postalCode">94102</span>
+            </div>
+        </div>
+
+        <p>Date: <time itemprop="startDate" datetime="2024-06-15T09:00">June 15, 2024 at 9:00 AM</time></p>
+        <p>End Date: <time itemprop="endDate" datetime="2024-06-16T17:00">June 16, 2024 at 5:00 PM</time></p>
+
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span>Price: $<span itemprop="price">299</span></span>
+            <meta itemprop="priceCurrency" content="USD">
+            <p>Availability: <span itemprop="availability" content="http://schema.org/InStock">Available</span></p>
+        </div>
+
+        <div itemprop="organizer" itemscope itemtype="http://schema.org/Organization">
+            <span itemprop="name">Tech Events Inc.</span>
+        </div>
+    </div>
+
+    <h2>Organization</h2>
+    <div class="organization" itemscope itemtype="http://schema.org/Organization">
+        <h3 itemprop="name">Acme Web Solutions</h3>
+        <p itemprop="description">Professional web development and design services</p>
+
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <p>Address:
+                <span itemprop="streetAddress">789 Business Blvd</span>,
+                <span itemprop="addressLocality">Seattle</span>,
+                <span itemprop="addressRegion">WA</span>
+                <span itemprop="postalCode">98101</span>
+            </p>
+        </div>
+
+        <p>Phone: <span itemprop="telephone">+1-555-987-6543</span></p>
+        <p>Email: <a href="mailto:info@acmeweb.com" itemprop="email">info@acmeweb.com</a></p>
+        <p>Website: <a href="https://acmeweb.com" itemprop="url">acmeweb.com</a></p>
+
+        <div itemprop="founder" itemscope itemtype="http://schema.org/Person">
+            <p>Founder: <span itemprop="name">Jane Doe</span></p>
+        </div>
+    </div>
+
+    <h2>Article</h2>
+    <article itemscope itemtype="http://schema.org/Article">
+        <header>
+            <h3 itemprop="headline">Understanding HTML5 Semantic Elements</h3>
+            <p>By <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <span itemprop="name">Alex Johnson</span>
+                </span></p>
+            <p>Published: <time itemprop="datePublished" datetime="2024-01-15">January 15, 2024</time></p>
+            <p>Modified: <time itemprop="dateModified" datetime="2024-01-20">January 20, 2024</time></p>
+        </header>
+
+        <div itemprop="articleBody">
+            <p>HTML5 introduced many semantic elements that provide meaning to web content. These elements help search
+                engines and assistive technologies understand the structure and purpose of content.</p>
+
+            <p>Some key semantic elements include header, nav, main, article, section, aside, and footer. Each serves a
+                specific purpose in defining the document structure.</p>
+        </div>
+
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+            <span itemprop="name">Web Dev Blog</span>
+            <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                <img src="logo.png" alt="Web Dev Blog Logo" itemprop="url">
+            </div>
+        </div>
+    </article>
+
+    <h2>Recipe</h2>
+    <div itemscope itemtype="http://schema.org/Recipe">
+        <h3 itemprop="name">Chocolate Chip Cookies</h3>
+        <img src="cookies.jpg" alt="Chocolate chip cookies" itemprop="image">
+        <p itemprop="description">Delicious homemade chocolate chip cookies</p>
+
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <p>Recipe by: <span itemprop="name">Chef Maria</span></p>
+        </div>
+
+        <p>Prep time: <time itemprop="prepTime" datetime="PT15M">15 minutes</time></p>
+        <p>Cook time: <time itemprop="cookTime" datetime="PT12M">12 minutes</time></p>
+        <p>Total time: <time itemprop="totalTime" datetime="PT27M">27 minutes</time></p>
+        <p>Servings: <span itemprop="recipeYield">24 cookies</span></p>
+
+        <div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
+            <p>Calories: <span itemprop="calories">180</span> per cookie</p>
+        </div>
+
+        <h4>Ingredients:</h4>
+        <ul>
+            <li itemprop="recipeIngredient">2 cups all-purpose flour</li>
+            <li itemprop="recipeIngredient">1 cup butter, softened</li>
+            <li itemprop="recipeIngredient">3/4 cup brown sugar</li>
+            <li itemprop="recipeIngredient">1/2 cup white sugar</li>
+            <li itemprop="recipeIngredient">2 eggs</li>
+            <li itemprop="recipeIngredient">1 cup chocolate chips</li>
+        </ul>
+
+        <h4>Instructions:</h4>
+        <ol>
+            <li itemprop="recipeInstructions">Preheat oven to 375°F</li>
+            <li itemprop="recipeInstructions">Mix butter and sugars until creamy</li>
+            <li itemprop="recipeInstructions">Add eggs and mix well</li>
+            <li itemprop="recipeInstructions">Gradually add flour</li>
+            <li itemprop="recipeInstructions">Stir in chocolate chips</li>
+            <li itemprop="recipeInstructions">Drop spoonfuls on baking sheet</li>
+            <li itemprop="recipeInstructions">Bake for 10-12 minutes</li>
+        </ol>
+
+        <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <span>Rating: <span itemprop="ratingValue">4.8</span>/5</span>
+            <span>(<span itemprop="ratingCount">85</span> reviews)</span>
+        </div>
+    </div>
+</body>
+
+</html>
