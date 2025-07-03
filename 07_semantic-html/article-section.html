@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article and Section Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        article {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007acc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+
+        .blog-post {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-article {
+            background-color: #f5f5f5;
+            border-left: 3px solid #28a745;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .product-section {
+            background-color: #e8f4f8;
+            border: 1px solid #b3d9e6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #666;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .meta-info {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            background-color: #007acc;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+
+        .section-header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px;
+            margin: -15px -15px 15px -15px;
+            border-radius: 3px 3px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>HTML5 Article and Section Elements</h1>
+        <p>Understanding semantic content organization</p>
+    </header>
+
+    <main>
+        <!-- Basic Article Example -->
+        <article>
+            <h2>What is an Article Element?</h2>
+            <p>The <code>&lt;article&gt;</code> element represents a complete, self-contained composition in a document.
+                It should make sense on its own and be distributable independently.</p>
+            <p><strong>Use cases:</strong> Blog posts, news articles, forum posts, product reviews, comments.</p>
+        </article>
+
+        <!-- Basic Section Example -->
+        <section>
+            <h2>What is a Section Element?</h2>
+            <p>The <code>&lt;section&gt;</code> element represents a thematic grouping of content. It groups related
+                content together but is not necessarily independent.</p>
+            <p><strong>Use cases:</strong> Chapters, tabbed content, different topics within an article.</p>
+        </section>
+
+        <!-- Blog Post Example -->
+        <article class="blog-post">
+            <header>
+                <h2>Complete Blog Post Example</h2>
+                <div class="meta-info">
+                    <span>By John Doe</span> |
+                    <span>Published: March 15, 2024</span> |
+                    <span class="tag">HTML5</span>
+                    <span class="tag">Tutorial</span>
+                </div>
+            </header>
+
+            <section>
+                <h3>Introduction</h3>
+                <p>This section introduces the topic and provides context for readers.</p>
+            </section>
+
+            <section>
+                <h3>Main Content</h3>
+                <p>Here's the main content of the blog post. This could include multiple paragraphs, images, and other
+                    elements.</p>
+                <p>Each section within an article can focus on a specific subtopic or theme.</p>
+            </section>
+
+            <section>
+                <h3>Conclusion</h3>
+                <p>This section wraps up the article and provides final thoughts.</p>
+            </section>
+
+            <footer>
+                <p>Tags: HTML, Web Development, Frontend</p>
+                <p>Share this article on social media</p>
+            </footer>
+        </article>
+
+        <!-- News Article Example -->
+        <article class="news-article">
+            <header>
+                <h2>Breaking News: New Web Standards Released</h2>
+                <div class="meta-info">
+                    <span>Reporter: Jane Smith</span> |
+                    <span>March 16, 2024, 10:30 AM</span>
+                </div>
+            </header>
+
+            <p><strong>LONDON</strong> - The World Wide Web Consortium announced new web standards today...</p>
+
+            <section>
+                <h3>Impact on Developers</h3>
+                <p>This section discusses how the new standards will affect web developers.</p>
+            </section>
+
+            <section>
+                <h3>Industry Response</h3>
+                <p>This section covers reactions from major tech companies.</p>
+            </section>
+        </article>
+
+        <!-- Product Page Example -->
+        <section class="product-section">
+            <div class="section-header">
+                <h2>Product Information</h2>
+            </div>
+
+            <article>
+                <h3>Product Review: Wireless Headphones</h3>
+                <div class="meta-info">Reviewed by Mike Johnson | Rating: 4.5/5</div>
+                <p>These wireless headphones offer excellent sound quality and comfort...</p>
+            </article>
+
+            <article>
+                <h3>Customer Feedback</h3>
+                <div class="meta-info">Customer: Sarah Wilson | Verified Purchase</div>
+                <p>I've been using these headphones for three months and they're fantastic...</p>
+            </article>
+
+            <article>
+                <h3>Expert Opinion</h3>
+                <div class="meta-info">Audio Expert: David Brown | March 10, 2024</div>
+                <p>From a technical perspective, these headphones deliver impressive performance...</p>
+            </article>
+        </section>
+
+        <!-- Document Structure Example -->
+        <section>
+            <div class="section-header">
+                <h2>Document Structure Best Practices</h2>
+            </div>
+
+            <section>
+                <h3>Nesting Rules</h3>
+                <ul>
+                    <li><code>&lt;article&gt;</code> can contain <code>&lt;section&gt;</code> elements</li>
+                    <li><code>&lt;section&gt;</code> can contain <code>&lt;article&gt;</code> elements</li>
+                    <li>Both can be nested within each other as needed</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>When to Use Article</h3>
+                <ul>
+                    <li>Content that makes sense independently</li>
+                    <li>Content that could be syndicated or shared</li>
+                    <li>Blog posts, news articles, comments</li>
+                    <li>Forum posts, product reviews</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>When to Use Section</h3>
+                <ul>
+                    <li>Thematic groupings of content</li>
+                    <li>Chapters or parts of a document</li>
+                    <li>Different topics within an article</li>
+                    <li>Tabbed content areas</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- Forum Example -->
+        <section>
+            <div class="section-header">
+                <h2>Forum Discussion Example</h2>
+            </div>
+
+            <article>
+                <header>
+                    <h3>Original Post: Help with CSS Grid</h3>
+                    <div class="meta-info">Posted by: CodeNewbie123 | 2 hours ago</div>
+                </header>
+                <p>I'm having trouble understanding CSS Grid layout. Can someone explain the basics?</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Reply #1</h3>
+                    <div class="meta-info">Posted by: CSSExpert | 1 hour ago</div>
+                </header>
+                <p>CSS Grid is a two-dimensional layout system. Here's a basic example...</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Reply #2</h3>
+                    <div class="meta-info">Posted by: WebDeveloper | 30 minutes ago</div>
+                </header>
+                <p>I found this tutorial really helpful when I was learning Grid...</p>
+            </article>
+        </section>
+
+        <!-- E-commerce Example -->
+        <section>
+            <div class="section-header">
+                <h2>E-commerce Product Page</h2>
+            </div>
+
+            <section>
+                <h3>Product Details</h3>
+                <p>This section contains product specifications, pricing, and availability.</p>
+            </section>
+
+            <section>
+                <h3>Customer Reviews</h3>
+
+                <article>
+                    <h4>Excellent Product!</h4>
+                    <div class="meta-info">By: Happy Customer | Verified Purchase | 5 stars</div>
+                    <p>This product exceeded my expectations. Highly recommend!</p>
+                </article>
+
+                <article>
+                    <h4>Good Value for Money</h4>
+                    <div class="meta-info">By: Budget Shopper | Verified Purchase | 4 stars</div>
+                    <p>Great quality at this price point. Minor issues but overall satisfied.</p>
+                </article>
+            </section>
+
+            <section>
+                <h3>Related Products</h3>
+                <p>This section shows similar or complementary products.</p>
+            </section>
+        </section>
+
+        <!-- Accessibility Example -->
+        <section>
+            <div class="section-header">
+                <h2>Accessibility Considerations</h2>
+            </div>
+
+            <article>
+                <h3>Screen Reader Benefits</h3>
+                <p>Using semantic <code>&lt;article&gt;</code> and <code>&lt;section&gt;</code> elements helps screen
+                    readers understand document structure and allows users to navigate more efficiently.</p>
+            </article>
+
+            <article>
+                <h3>SEO Benefits</h3>
+                <p>Search engines better understand content hierarchy and importance when proper semantic elements are
+                    used.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HTML Learning Tutorial. This example demonstrates proper use of article and section elements.</p>
+    </footer>
+</body>
+
+</html>
