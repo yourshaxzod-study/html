@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Attributes</title>
+    <style>
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .product:hover {
+            background-color: #f0f0f0;
+        }
+
+        .product[data-category="electronics"] {
+            border-color: blue;
+        }
+
+        .product[data-category="clothing"] {
+            border-color: green;
+        }
+
+        .product[data-featured="true"] {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #007cba;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Data Attributes</h1>
+
+    <h2>Product Catalog</h2>
+    <div class="product" data-id="1" data-category="electronics" data-price="299.99" data-stock="15"
+        data-featured="true">
+        <h3>Smartphone</h3>
+        <p>Latest model smartphone with advanced features</p>
+        <button onclick="addToCart(this.parentElement)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-id="2" data-category="clothing" data-price="49.99" data-stock="25" data-featured="false">
+        <h3>T-Shirt</h3>
+        <p>Comfortable cotton t-shirt</p>
+        <button onclick="addToCart(this.parentElement)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-id="3" data-category="electronics" data-price="159.99" data-stock="8"
+        data-featured="false">
+        <h3>Headphones</h3>
+        <p>High-quality wireless headphones</p>
+        <button onclick="addToCart(this.parentElement)">Add to Cart</button>
+    </div>
+
+    <h2>Filter Products</h2>
+    <button onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('electronics')">Electronics</button>
+    <button onclick="filterProducts('clothing')">Clothing</button>
+    <button onclick="filterProducts('featured')">Featured</button>
+
+    <h2>Tooltips</h2>
+    <p>Hover over these elements:</p>
+    <button class="tooltip" data-tooltip="Click to save your work">Save</button>
+    <button class="tooltip" data-tooltip="This will delete the selected item">Delete</button>
+    <span class="tooltip" data-tooltip="Last updated: 2024-01-15">Status: Active</span>
+
+    <h2>Progress Tracking</h2>
+    <div class="progress-bar">
+        <div class="progress-fill" data-progress="0" style="width: 0%"></div>
+    </div>
+    <button onclick="updateProgress()">Update Progress</button>
+
+    <h2>User Preferences</h2>
+    <div data-user-id="123" data-theme="dark" data-language="en" data-notifications="true">
+        <p>User settings loaded</p>
+        <button onclick="showUserData(this.parentElement)">Show User Data</button>
+    </div>
+
+    <h2>Dynamic Content</h2>
+    <div id="dynamic-content">
+        <div data-component="header" data-props='{"title": "Welcome", "level": 1}'>
+            <h1>Welcome</h1>
+        </div>
+        <div data-component="article" data-props='{"id": 1, "author": "John Doe"}'>
+            <p>This is a dynamic article component</p>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productElement) {
+            const productData = {
+                id: productElement.dataset.id,
+                category: productElement.dataset.category,
+                price: parseFloat(productElement.dataset.price),
+                stock: parseInt(productElement.dataset.stock),
+                featured: productElement.dataset.featured === 'true'
+            };
+
+            console.log('Adding to cart:', productData);
+            alert(`Added ${productElement.querySelector('h3').textContent} to cart - $${productData.price}`);
+        }
+
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                if (category === 'all') {
+                    product.style.display = 'block';
+                } else if (category === 'featured') {
+                    product.style.display = product.dataset.featured === 'true' ? 'block' : 'none';
+                } else {
+                    product.style.display = product.dataset.category === category ? 'block' : 'none';
+                }
+            });
+        }
+
+        function updateProgress() {
+            const progressFill = document.querySelector('.progress-fill');
+            const currentProgress = parseInt(progressFill.dataset.progress);
+            const newProgress = Math.min(currentProgress + 20, 100);
+
+            progressFill.dataset.progress = newProgress;
+            progressFill.style.width = newProgress + '%';
+
+            if (newProgress === 100) {
+                alert('Progress complete!');
+            }
+        }
+
+        function showUserData(userElement) {
+            const userData = {
+                userId: userElement.dataset.userId,
+                theme: userElement.dataset.theme,
+                language: userElement.dataset.language,
+                notifications: userElement.dataset.notifications === 'true'
+            };
+
+            console.log('User data:', userData);
+            alert(`User ID: ${userData.userId}\nTheme: ${userData.theme}\nLanguage: ${userData.language}\nNotifications: ${userData.notifications}`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const components = document.querySelectorAll('[data-component]');
+
+            components.forEach(component => {
+                const componentType = component.dataset.component;
+                const props = JSON.parse(component.dataset.props || '{}');
+
+                console.log(`Component: ${componentType}`, props);
+            });
+        });
+    </script>
+</body>
+
+</html>
