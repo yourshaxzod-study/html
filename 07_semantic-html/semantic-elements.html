@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Semantic Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        header,
+        nav,
+        main,
+        section,
+        article,
+        aside,
+        footer {
+            border: 2px solid #333;
+            margin: 10px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        header {
+            border-color: #e74c3c;
+        }
+
+        nav {
+            border-color: #3498db;
+        }
+
+        main {
+            border-color: #2ecc71;
+        }
+
+        section {
+            border-color: #f39c12;
+        }
+
+        article {
+            border-color: #9b59b6;
+        }
+
+        aside {
+            border-color: #1abc9c;
+        }
+
+        footer {
+            border-color: #34495e;
+        }
+
+        header::before {
+            content: "HEADER";
+        }
+
+        nav::before {
+            content: "NAV";
+        }
+
+        main::before {
+            content: "MAIN";
+        }
+
+        section::before {
+            content: "SECTION";
+        }
+
+        article::before {
+            content: "ARTICLE";
+        }
+
+        aside::before {
+            content: "ASIDE";
+        }
+
+        footer::before {
+            content: "FOOTER";
+        }
+
+        header::before,
+        nav::before,
+        main::before,
+        section::before,
+        article::before,
+        aside::before,
+        footer::before {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Our Website</h1>
+        <p>Your trusted source for web development tutorials</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Main Content Area</h2>
+
+        <section>
+            <h3>Web Development Tutorials</h3>
+            <p>Learn web development with our comprehensive tutorials.</p>
+
+            <article>
+                <header>
+                    <h4>Getting Started with HTML</h4>
+                    <p>Published on <time datetime="2024-01-15">January 15, 2024</time></p>
+                </header>
+                <p>HTML is the foundation of web development. In this tutorial, we'll cover the basics of HTML structure
+                    and semantic elements.</p>
+                <p>Semantic HTML helps search engines understand your content better and improves accessibility for
+                    users with disabilities.</p>
+                <footer>
+                    <p>Written by John Doe | <a href="#comments">Comments (5)</a></p>
+                </footer>
+            </article>
+
+            <article>
+                <header>
+                    <h4>CSS Fundamentals</h4>
+                    <p>Published on <time datetime="2024-01-20">January 20, 2024</time></p>
+                </header>
+                <p>CSS brings your HTML to life with styling and layout. Learn the essential CSS properties and
+                    techniques.</p>
+                <p>We'll cover selectors, properties, values, and the box model in detail.</p>
+                <footer>
+                    <p>Written by Jane Smith | <a href="#comments">Comments (12)</a></p>
+                </footer>
+            </article>
+        </section>
+
+        <section>
+            <h3>Latest News</h3>
+
+            <article>
+                <header>
+                    <h4>HTML5 New Features</h4>
+                    <p>Published on <time datetime="2024-01-25">January 25, 2024</time></p>
+                </header>
+                <p>HTML5 introduced many new semantic elements that make web pages more meaningful and accessible.</p>
+
+                <details>
+                    <summary>Click to see HTML5 semantic elements list</summary>
+                    <ul>
+                        <li>&lt;header&gt; - Page or section header</li>
+                        <li>&lt;nav&gt; - Navigation links</li>
+                        <li>&lt;main&gt; - Main content area</li>
+                        <li>&lt;section&gt; - Thematic grouping</li>
+                        <li>&lt;article&gt; - Independent content</li>
+                        <li>&lt;aside&gt; - Sidebar content</li>
+                        <li>&lt;footer&gt; - Page or section footer</li>
+                    </ul>
+                </details>
+            </article>
+        </section>
+    </main>
+
+    <aside>
+        <h3>Related Resources</h3>
+        <ul>
+            <li><a href="#html-guide">Complete HTML Guide</a></li>
+            <li><a href="#css-tips">CSS Tips and Tricks</a></li>
+            <li><a href="#js-basics">JavaScript Basics</a></li>
+        </ul>
+
+        <h4>Quick Tip</h4>
+        <p>Always use semantic HTML elements instead of generic divs when possible. This improves accessibility and SEO!
+        </p>
+    </aside>
+
+    <footer>
+        <p>&copy; 2024 Web Development Tutorials. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@webdevtutorials.com">info@webdevtutorials.com</a></p>
+        <p>Follow us on social media for updates!</p>
+    </footer>
+</body>
+
+</html>
