@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Forms</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-right: 8px;
+            margin-bottom: 0;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .radio-group input {
+            width: auto;
+            margin-right: 8px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Basic HTML Forms</h1>
+
+    <form action="/submit" method="POST">
+        <h2>Contact Us</h2>
+
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="">Please select...</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="billing">Billing Question</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Please enter your message here..."
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Preferred Contact Method:</label>
+            <div class="radio-group">
+                <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                <label for="contact-email">Email</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                <label for="contact-phone">Phone</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                <label for="newsletter">Subscribe to our newsletter</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" value="accepted" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+        </div>
+
+        <input type="hidden" name="form-id" value="contact-form">
+
+        <button type="submit">Send Message</button>
+
+        <button type="reset" style="background-color: #6c757d; margin-left: 10px;">Clear Form</button>
+    </form>
+
+    <form action="/login" method="POST">
+        <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="remember" name="remember" value="1">
+            <label for="remember">Remember me</label>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div style="background: #f0f8ff; padding: 15px; margin: 20px 0; border-left: 4px solid #007bff;">
+        <h3>Form Attributes Explained:</h3>
+        <ul>
+            <li><strong>action:</strong> Where to send form data when submitted</li>
+            <li><strong>method:</strong> HTTP method (GET or POST)</li>
+            <li><strong>required:</strong> Makes field mandatory</li>
+            <li><strong>placeholder:</strong> Hint text inside input</li>
+            <li><strong>autocomplete:</strong> Helps browsers auto-fill</li>
+            <li><strong>name:</strong> Identifies field data on server</li>
+            <li><strong>id:</strong> Connects label to input</li>
+        </ul>
+    </div>
+</body>
+
+</html>
