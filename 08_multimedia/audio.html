@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Audio Element</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .audio-container {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007acc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .code-example {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        .music-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .podcast-player {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .audio-controls {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .styled-audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .audio-info {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #005a9e;
+        }
+
+        .playlist {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .track {
+            background-color: white;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .track:hover {
+            background-color: #f8f9fa;
+        }
+
+        .track.active {
+            background-color: #007acc;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>HTML5 Audio Element</h1>
+        <p>Complete guide to embedding and controlling audio in web pages</p>
+    </header>
+
+    <main>
+        <!-- Basic Audio Example -->
+        <section class="audio-container">
+            <h2>Basic Audio Implementation</h2>
+            <audio controls>
+                <source src="audio/sample.mp3" type="audio/mpeg">
+                <source src="audio/sample.ogg" type="audio/ogg">
+                <source src="audio/sample.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="code-example">&lt;audio controls&gt;
+                &lt;source src="audio/sample.mp3" type="audio/mpeg"&gt;
+                &lt;source src="audio/sample.ogg" type="audio/ogg"&gt;
+                &lt;source src="audio/sample.wav" type="audio/wav"&gt;
+                Your browser does not support the audio element.
+                &lt;/audio&gt;</div>
+        </section>
+
+        <!-- Audio Attributes -->
+        <section class="audio-container">
+            <h2>Audio Attributes</h2>
+
+            <h3>Autoplay Audio</h3>
+            <div class="warning">
+                <strong>Note:</strong> Most browsers block autoplay for user experience. Use sparingly.
+            </div>
+            <audio controls autoplay muted>
+                <source src="audio/background.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <h3>Looping Audio</h3>
+            <audio controls loop>
+                <source src="audio/loop.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <h3>Preload Options</h3>
+            <audio controls preload="metadata">
+                <source src="audio/metadata.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="audio-info">
+                <strong>Preload values:</strong>
+                <ul>
+                    <li><code>none</code> - Don't preload anything</li>
+                    <li><code>metadata</code> - Preload only metadata (duration, dimensions)</li>
+                    <li><code>auto</code> - Preload the entire audio file</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Music Player Example -->
+        <section class="music-player">
+            <h2>🎵 Music Player</h2>
+            <h3 id="current-song">Now Playing: Ambient Music</h3>
+
+            <audio id="music-player" controls class="styled-audio">
+                <source src="audio/ambient-music.mp3" type="audio/mpeg">
+                <source src="audio/ambient-music.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="audio-controls">
+                <button onclick="playPause()">⏯️ Play/Pause</button>
+                <button onclick="changeVolume(0.5)">🔉 50%</button>
+                <button onclick="changeVolume(1.0)">🔊 100%</button>
+                <button onclick="skipTime(10)">⏭️ +10s</button>
+                <button onclick="skipTime(-10)">⏮️ -10s</button>
+            </div>
+
+            <div id="audio-info" class="audio-info">
+                <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+            </div>
+        </section>
+
+        <!-- Podcast Player Example -->
+        <section class="podcast-player">
+            <h2>🎙️ Podcast Player</h2>
+            <h3>Web Development Podcast - Episode 42</h3>
+
+            <audio id="podcast-player" controls class="styled-audio" preload="metadata">
+                <source src="audio/podcast-ep42.mp3" type="audio/mpeg">
+                <source src="audio/podcast-ep42.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="audio-info">
+                <p><strong>Episode:</strong> HTML5 and Modern Web Standards</p>
+                <p><strong>Duration:</strong> 45 minutes</p>
+                <p><strong>Host:</strong> Web Dev Expert</p>
+            </div>
+
+            <div class="audio-controls">
+                <button onclick="setPlaybackRate(0.5)">0.5x</button>
+                <button onclick="setPlaybackRate(1.0)">1x</button>
+                <button onclick="setPlaybackRate(1.25)">1.25x</button>
+                <button onclick="setPlaybackRate(1.5)">1.5x</button>
+                <button onclick="setPlaybackRate(2.0)">2x</button>
+            </div>
+        </section>
+
+        <!-- Audio Formats -->
+        <section class="audio-container">
+            <h2>Audio Formats Support</h2>
+
+            <h3>MP3 Format</h3>
+            <audio controls>
+                <source src="audio/sample.mp3" type="audio/mpeg">
+                Your browser does not support MP3 format.
+            </audio>
+
+            <h3>OGG Format</h3>
+            <audio controls>
+                <source src="audio/sample.ogg" type="audio/ogg">
+                Your browser does not support OGG format.
+            </audio>
+
+            <h3>WAV Format</h3>
+            <audio controls>
+                <source src="audio/sample.wav" type="audio/wav">
+                Your browser does not support WAV format.
+            </audio>
+
+            <div class="audio-info">
+                <h4>Browser Support:</h4>
+                <ul>
+                    <li><strong>MP3:</strong> Widely supported, good compression</li>
+                    <li><strong>OGG:</strong> Open source, good quality</li>
+                    <li><strong>WAV:</strong> Uncompressed, large file size</li>
+                    <li><strong>AAC:</strong> Good quality, Apple devices</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Playlist Example -->
+        <section class="playlist">
+            <h2>🎵 Audio Playlist</h2>
+
+            <audio id="playlist-player" controls class="styled-audio">
+                <source src="audio/track1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="playlist-tracks">
+                <div class="track active" onclick="loadTrack(0)">
+                    <h4>Track 1: Intro Music</h4>
+                    <p>Duration: 2:30</p>
+                </div>
+
+                <div class="track" onclick="loadTrack(1)">
+                    <h4>Track 2: Main Theme</h4>
+                    <p>Duration: 3:45</p>
+                </div>
+
+                <div class="track" onclick="loadTrack(2)">
+                    <h4>Track 3: Outro</h4>
+                    <p>Duration: 1:50</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audio with JavaScript Control -->
+        <section class="audio-container">
+            <h2>JavaScript Audio Control</h2>
+
+            <audio id="js-audio" preload="auto">
+                <source src="audio/notification.mp3" type="audio/mpeg">
+                <source src="audio/notification.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="audio-controls">
+                <button onclick="playAudio()">▶️ Play</button>
+                <button onclick="pauseAudio()">⏸️ Pause</button>
+                <button onclick="stopAudio()">⏹️ Stop</button>
+                <button onclick="muteAudio()">🔇 Mute</button>
+                <button onclick="unmuteAudio()">🔊 Unmute</button>
+            </div>
+
+            <div class="audio-info">
+                <p>Volume: <input type="range" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+                </p>
+                <p>Progress: <span id="progress">0%</span></p>
+            </div>
+        </section>
+
+        <!-- Accessibility Example -->
+        <section class="audio-container">
+            <h2>Accessible Audio Player</h2>
+
+            <figure>
+                <figcaption>
+                    <h3>Audio Description: Nature Sounds</h3>
+                    <p>This audio file contains relaxing nature sounds including birds chirping, water flowing, and
+                        gentle wind.</p>
+                </figcaption>
+
+                <audio controls aria-describedby="audio-description">
+                    <source src="audio/nature-sounds.mp3" type="audio/mpeg">
+                    <source src="audio/nature-sounds.ogg" type="audio/ogg">
+                    <track kind="captions" src="captions/nature-sounds.vtt" srclang="en" label="English">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <div id="audio-description" class="audio-info">
+                    <p><strong>Audio Description:</strong> 5-minute recording of peaceful nature sounds suitable for
+                        relaxation and meditation.</p>
+                </div>
+            </figure>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="audio-container">
+            <h2>Best Practices</h2>
+
+            <div class="success">
+                <h3>✅ Do:</h3>
+                <ul>
+                    <li>Provide multiple audio formats for browser compatibility</li>
+                    <li>Include fallback text for unsupported browsers</li>
+                    <li>Use appropriate preload settings</li>
+                    <li>Consider file size and loading time</li>
+                    <li>Provide audio descriptions for accessibility</li>
+                    <li>Test audio controls with keyboard navigation</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h3>❌ Don't:</h3>
+                <ul>
+                    <li>Auto-play audio with sound (respect user preferences)</li>
+                    <li>Use only one audio format</li>
+                    <li>Forget to include controls for user interaction</li>
+                    <li>Ignore mobile data usage concerns</li>
+                    <li>Use audio without proper context or description</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HTML Learning Tutorial. Audio implementation examples and best practices.</p>
+    </footer>
+
+    <script>
+        // Music Player Functions
+        function playPause() {
+            const player = document.getElementById('music-player');
+            if (player.paused) {
+                player.play();
+            } else {
+                player.pause();
+            }
+        }
+
+        function changeVolume(level) {
+            const player = document.getElementById('music-player');
+            player.volume = level;
+        }
+
+        function skipTime(seconds) {
+            const player = document.getElementById('music-player');
+            player.currentTime += seconds;
+        }
+
+        // Podcast Player Functions
+        function setPlaybackRate(rate) {
+            const player = document.getElementById('podcast-player');
+            player.playbackRate = rate;
+        }
+
+        // JavaScript Audio Control
+        function playAudio() {
+            document.getElementById('js-audio').play();
+        }
+
+        function pauseAudio() {
+            document.getElementById('js-audio').pause();
+        }
+
+        function stopAudio() {
+            const audio = document.getElementById('js-audio');
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        function muteAudio() {
+            document.getElementById('js-audio').muted = true;
+        }
+
+        function unmuteAudio() {
+            document.getElementById('js-audio').muted = false;
+        }
+
+        function setVolume(value) {
+            document.getElementById('js-audio').volume = value;
+        }
+
+        // Playlist Functions
+        const tracks = [
+            { src: 'audio/track1.mp3', title: 'Track 1: Intro Music' },
+            { src: 'audio/track2.mp3', title: 'Track 2: Main Theme' },
+            { src: 'audio/track3.mp3', title: 'Track 3: Outro' }
+        ];
+
+        function loadTrack(index) {
+            const player = document.getElementById('playlist-player');
+            const trackElements = document.querySelectorAll('.track');
+
+            // Remove active class from all tracks
+            trackElements.forEach(track => track.classList.remove('active'));
+
+            // Add active class to selected track
+            trackElements[index].classList.add('active');
+
+            // Load new track
+            player.src = tracks[index].src;
+            player.load();
+        }
+
+        // Update time display
+        document.getElementById('music-player').addEventListener('timeupdate', function () {
+            const currentTime = this.currentTime;
+            const duration = this.duration;
+
+            document.getElementById('current-time').textContent = formatTime(currentTime);
+            document.getElementById('duration').textContent = formatTime(duration);
+        });
+
+        // Update progress
+        document.getElementById('js-audio').addEventListener('timeupdate', function () {
+            const progress = (this.currentTime / this.duration) * 100;
+            document.getElementById('progress').textContent = Math.round(progress) + '%';
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+
+</html>
