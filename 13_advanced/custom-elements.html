@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Elements</title>
+    <style>
+        user-card {
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        user-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        user-card .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 15px;
+        }
+
+        user-card .info {
+            overflow: hidden;
+        }
+
+        progress-bar {
+            display: block;
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        progress-bar .fill {
+            height: 100%;
+            background-color: #4caf50;
+            transition: width 0.3s ease;
+        }
+
+        custom-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007cba;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        custom-button:hover {
+            background-color: #005a8b;
+        }
+
+        custom-button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        tab-container {
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        tab-container .tab-buttons {
+            display: flex;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        tab-container .tab-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            flex: 1;
+        }
+
+        tab-container .tab-button.active {
+            background-color: white;
+            border-bottom: 2px solid #007cba;
+        }
+
+        tab-container .tab-content {
+            padding: 20px;
+        }
+
+        tab-container .tab-panel {
+            display: none;
+        }
+
+        tab-container .tab-panel.active {
+            display: block;
+        }
+
+        modal-dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        modal-dialog .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        modal-dialog .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        modal-dialog .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Custom Elements</h1>
+
+    <h2>User Card Component</h2>
+    <user-card name="John Smith" role="Software Engineer" email="john@example.com"
+        avatar="https://via.placeholder.com/60">
+    </user-card>
+
+    <user-card name="Jane Doe" role="UX Designer" email="jane@example.com" avatar="https://via.placeholder.com/60">
+    </user-card>
+
+    <h2>Progress Bar Component</h2>
+    <progress-bar value="0" max="100" label="Loading..."></progress-bar>
+    <button onclick="updateProgress()">Update Progress</button>
+
+    <h2>Custom Button Component</h2>
+    <custom-button onclick="alert('Primary button clicked!')">Primary Button</custom-button>
+    <custom-button variant="secondary" onclick="alert('Secondary button clicked!')">Secondary Button</custom-button>
+    <custom-button disabled>Disabled Button</custom-button>
+
+    <h2>Tab Container Component</h2>
+    <tab-container>
+        <div slot="tab1" data-label="Home">
+            <h3>Home Content</h3>
+            <p>This is the home tab content. Welcome to our website!</p>
+        </div>
+        <div slot="tab2" data-label="About">
+            <h3>About Content</h3>
+            <p>This is the about tab content. Learn more about our company.</p>
+        </div>
+        <div slot="tab3" data-label="Contact">
+            <h3>Contact Content</h3>
+            <p>This is the contact tab content. Get in touch with us.</p>
+        </div>
+    </tab-container>
+
+    <h2>Modal Dialog Component</h2>
+    <button onclick="openModal()">Open Modal</button>
+
+    <modal-dialog id="example-modal">
+        <div slot="header">
+            <h3>Modal Title</h3>
+        </div>
+        <div slot="content">
+            <p>This is the modal content. You can put any content here.</p>
+            <p>Modal dialogs are useful for displaying important information or collecting user input.</p>
+        </div>
+        <div slot="footer">
+            <button onclick="closeModal()">Close</button>
+            <button onclick="alert('Action performed!')">Action</button>
+        </div>
+    </modal-dialog>
+
+    <script>
+        // User Card Custom Element
+        class UserCard extends HTMLElement {
+            constructor() {
+                super();
+                this.render();
+            }
+
+            render() {
+                const name = this.getAttribute('name') || 'Unknown';
+                const role = this.getAttribute('role') || 'No role';
+                const email = this.getAttribute('email') || 'No email';
+                const avatar = this.getAttribute('avatar') || 'https://via.placeholder.com/60';
+
+                this.innerHTML = `
+                    <img src="${avatar}" alt="${name}" class="avatar">
+                    <div class="info">
+                        <h3>${name}</h3>
+                        <p><strong>Role:</strong> ${role}</p>
+                        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        // Progress Bar Custom Element
+        class ProgressBar extends HTMLElement {
+            constructor() {
+                super();
+                this.render();
+            }
+
+            render() {
+                const value = parseInt(this.getAttribute('value')) || 0;
+                const max = parseInt(this.getAttribute('max')) || 100;
+                const label = this.getAttribute('label') || '';
+                const percentage = (value / max) * 100;
+
+                this.innerHTML = `
+                    <div class="fill" style="width: ${percentage}%"></div>
+                    ${label && `<div style="text-align: center; margin-top: 5px;">${label} (${percentage.toFixed(1)}%)</div>`}
+                `;
+            }
+
+            static get observedAttributes() {
+                return ['value', 'max', 'label'];
+            }
+
+            attributeChangedCallback() {
+                this.render();
+            }
+        }
+
+        // Custom Button Element
+        class CustomButton extends HTMLElement {
+            constructor() {
+                super();
+                this.addEventListener('click', this.handleClick.bind(this));
+                this.render();
+            }
+
+            render() {
+                const variant = this.getAttribute('variant') || 'primary';
+                const disabled = this.hasAttribute('disabled');
+
+                if (variant === 'secondary') {
+                    this.style.backgroundColor = '#6c757d';
+                }
+
+                if (disabled) {
+                    this.style.backgroundColor = '#ccc';
+                    this.style.cursor = 'not-allowed';
+                }
+
+                this.innerHTML = this.innerHTML || 'Button';
+            }
+
+            handleClick(event) {
+                if (this.hasAttribute('disabled')) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            }
+        }
+
+        // Tab Container Custom Element
+        class TabContainer extends HTMLElement {
+            constructor() {
+                super();
+                this.currentTab = 0;
+                this.render();
+            }
+
+            render() {
+                const tabs = Array.from(this.querySelectorAll('[slot]'));
+
+                let tabButtons = '';
+                let tabPanels = '';
+
+                tabs.forEach((tab, index) => {
+                    const label = tab.getAttribute('data-label') || `Tab ${index + 1}`;
+                    const isActive = index === this.currentTab;
+
+                    tabButtons += `<button class="tab-button ${isActive ? 'active' : ''}" onclick="this.parentElement.parentElement.switchTab(${index})">${label}</button>`;
+                    tabPanels += `<div class="tab-panel ${isActive ? 'active' : ''}">${tab.innerHTML}</div>`;
+                });
+
+                this.innerHTML = `
+                    <div class="tab-buttons">${tabButtons}</div>
+                    <div class="tab-content">${tabPanels}</div>
+                `;
+            }
+
+            switchTab(index) {
+                this.currentTab = index;
+                this.render();
+            }
+        }
+
+        // Modal Dialog Custom Element
+        class ModalDialog extends HTMLElement {
+            constructor() {
+                super();
+                this.render();
+            }
+
+            render() {
+                const headerContent = this.querySelector('[slot="header"]')?.innerHTML || '';
+                const bodyContent = this.querySelector('[slot="content"]')?.innerHTML || '';
+                const footerContent = this.querySelector('[slot="footer"]')?.innerHTML || '';
+
+                this.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            ${headerContent}
+                            <button class="close-button" onclick="this.closest('modal-dialog').close()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            ${bodyContent}
+                        </div>
+                        <div class="modal-footer">
+                            ${footerContent}
+                        </div>
+                    </div>
+                `;
+            }
+
+            open() {
+                this.style.display = 'block';
+            }
+
+            close() {
+                this.style.display = 'none';
+            }
+        }
+
+        // Register Custom Elements
+        customElements.define('user-card', UserCard);
+        customElements.define('progress-bar', ProgressBar);
+        customElements.define('custom-button', CustomButton);
+        customElements.define('tab-container', TabContainer);
+        customElements.define('modal-dialog', ModalDialog);
+
+        // Helper functions
+        function updateProgress() {
+            const progressBar = document.querySelector('progress-bar');
+            const currentValue = parseInt(progressBar.getAttribute('value')) || 0;
+            const newValue = Math.min(currentValue + 20, 100);
+            progressBar.setAttribute('value', newValue);
+        }
+
+        function openModal() {
+            const modal = document.getElementById('example-modal');
+            modal.open();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('example-modal');
+            modal.close();
+        }
+    </script>
+</body>
+
+</html>
